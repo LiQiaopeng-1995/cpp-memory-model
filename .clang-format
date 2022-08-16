@@ -1,0 +1,8 @@
+Language:            Cpp
+BasedOnStyle:        google
+ColumnLimit:         0
+IndentWidth:         4
+SortIncludes:        true
+BreakBeforeBraces:   Allman
+ColumnLimit :        100
+MaxEmptyLinesToKeep: 1
