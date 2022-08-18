@@ -45,6 +45,7 @@ int main(){
     t4.join();
     t1.join();
     t2.join();
+    cout << "z: " << z << endl;
     assert(z.load()!=0);
     return 0;
 }

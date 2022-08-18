@@ -58,7 +58,7 @@ int main()
               << std::endl;
 
     // 3. 多线程 原子操作
-    std::atomic<int> atomic_sum = 0;
+    std::atomic<int> atomic_sum{0};
     start = std::chrono::steady_clock::now();
 #pragma omp parallel for num_threads(3)
     for (int i = 0; i < hsv.rows * hsv.cols; ++i)

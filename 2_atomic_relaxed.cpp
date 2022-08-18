@@ -3,8 +3,8 @@
 #include <atomic>
 using namespace std;
 
-std::atomic<int> x = 0;
-std::atomic<int> y = 0;
+std::atomic<int> x{0};
+std::atomic<int> y{0};
 int r0 = 100;
 int r1 = 100;
 

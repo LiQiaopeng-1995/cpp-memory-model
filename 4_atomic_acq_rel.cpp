@@ -17,25 +17,30 @@ void write_x_then_y()
 
 void read_y_then_x()
 {
-    while (!y.load(memory_order_acquire))  // 3, 等到2的执行结束(自旋)
-        ;
+    while (!y.load(memory_order_acquire));  // 3, 等到2的执行结束(自旋)
     if (x.load(memory_order_relaxed))  // 4
     {
         ++z;
     }
+    // y.load(memory_order_acquire);
 }
-
-int main()
+void test()
 {
     x = false;
     y = false;
     z = 0;
-    cout << "t1 t2" << endl;
     thread t1(write_x_then_y);
     thread t2(read_y_then_x);
     t1.join();
     t2.join();
-    assert(z.load() != 0);
-    cout << "assert success" << endl;
+    assert(z.load() == 1);
+}
+int main()
+{
+    for (int i = 0; i < 1e8; ++i) {
+        test();
+        if (i%1000 == 0)
+            std::cout << i << " times: OK" << std::endl;
+    }
     return 0;
 }
