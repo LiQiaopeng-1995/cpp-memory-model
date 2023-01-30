@@ -28,7 +28,7 @@ void init() {
 }
 
 bool check() {
-    return r0 == 0 && r1 == 0;
+    return r0 == 0 && r1 == 1;
 }
 
 // 原子变量

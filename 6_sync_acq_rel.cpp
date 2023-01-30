@@ -6,12 +6,16 @@
 using namespace std;
 atomic<int> sync;
 
-void thread_1() { sync.store(1, memory_order_release); }
+void thread_1() { 
+    sync.store(1, memory_order_release); 
+    cout << "thread 1" << endl;
+}
 
 void thread_2()
 {
     int expected = 1;
     while (!sync.compare_exchange_weak(expected, 2, memory_order_acq_rel)) expected = 1;
+    cout << "thread 2" << endl;
 }
 
 void thread_3()
@@ -19,6 +23,7 @@ void thread_3()
     int a = -1;
     while (sync.load(memory_order_acquire) < 2)
         ;
+    cout << "thread 3" << endl;
     a = sync.load(memory_order_acquire);
     cout << a << endl;
 }
