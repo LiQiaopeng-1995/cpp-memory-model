@@ -9,7 +9,7 @@
     cmake --build build
 ```
 
-## 项目作用说明
+## 程序说明
 
 ### 1_cpu_reorder
 
