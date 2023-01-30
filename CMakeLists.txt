@@ -17,37 +17,27 @@ set(CMAKE_SHARED_LINKER_FLAGS_RELEASE
 set(CMAKE_EXE_LINKER_FLAGS_RELEASE
     "${CMAKE_EXE_LINKER_FLAGS_RELEASE} /DEBUG /OPT:REF /OPT:ICF")
 
-add_executable(cpu_reorder 
-1_cpu_reorder.cpp)
+add_executable(cpu_reorder 1_cpu_reorder.cpp)
 
-add_executable(atomic_relaxed 
-2_atomic_relaxed.cpp)
+add_executable(atomic_relaxed 2_atomic_relaxed.cpp)
 
-set(OpenCV_DIR "D:/project/scc-nt-fakepoint-sdk/build/_deps/opencv-src/x64/vc15/lib")
+# # 设置自己的OpenCV库路径
+# set(OpenCV_DIR
+#     "D:/project/scc-nt-fakepoint-sdk/build/_deps/opencv-src/x64/vc15/lib")
 
 find_package(OpenCV)
+find_package(OpenMP REQUIRED)
 
-add_executable(mat_cal 
-    3_mat_cal.cpp)
+add_executable(mat_cal 3_mat_cal.cpp)
 
-target_include_directories(
-mat_cal
-PUBLIC
-    ${OpenCV_INCLUDE_DIRS}
-)
+target_include_directories(mat_cal PUBLIC ${OpenCV_INCLUDE_DIRS})
 
-target_link_libraries(
-mat_cal
-    ${OpenCV_LIBS})
+target_link_libraries(mat_cal ${OpenCV_LIBS}  OpenMP::OpenMP_CXX)
 
-add_executable(atomic_acq_rel
-4_atomic_acq_rel.cpp)
+add_executable(atomic_acq_rel 4_atomic_acq_rel.cpp)
 
-add_executable(double_rel_acq
-5_double_rel_acq.cpp)
+add_executable(double_rel_acq 5_double_rel_acq.cpp)
 
-add_executable(sync_acq_rel
-6_sync_acq_rel.cpp)
+add_executable(sync_acq_rel 6_sync_acq_rel.cpp)
 
-add_executable(fence
-7_fence.cpp)
+add_executable(fence 7_fence.cpp)
